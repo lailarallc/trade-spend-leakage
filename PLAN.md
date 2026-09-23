@@ -127,3 +127,9 @@ Ship the Dash dashboard and linked Excel workbook across 8 implementation units,
   - **Nice to have** — `pipeline/move2_efficiency.py`: `warnings.warn` added for unmapped `promotions.retailer_id` slugs.
 - **Deferred:** Move 5 `actual` could be further filtered to trade-only deduction types for a cleaner comparison — deferred; footnote clarification is sufficient for the portfolio piece.
 - **Next review:** 2026-07-01
+
+### 2026-09-23 — Audit (health check only)
+- **Findings:** 0 critical, 7 important, 5 nice-to-have
+- **Top concerns:** The gitleaks pre-commit hook never runs because core.hooksPath points at scripts/git-hooks (pre-push only), so secret scanning is silently off. Move 5 accrual compares rate-card accrual (~$3.2M) to all deductions (~$0.4M), so the +$2.6M variance is a definitional artifact, and Move 2/Move 3 matching rules (promo cost summed across duplicate promo rows; billbacks matched to off-invoice promos by retailer only, no SKU) may inflate figures. PLAN.md/CLAUDE.md are stale (Phase 1 goal, pending SQLite-to-Postgres note) and the local checkout sits on a merged feature branch behind origin.
+- **Action taken:** Audit only — no fixes this session
+- **Next review:** 2026-10-21
