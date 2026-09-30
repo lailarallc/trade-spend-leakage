@@ -14,6 +14,8 @@ from pathlib import Path
 
 import psycopg2
 
+from pipeline import prod_guard
+
 ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DB = ROOT / "data" / "results.db"
 
@@ -34,6 +36,7 @@ def source_conn():
             "  $env:DATABASE_URL = 'postgresql://user:pass@host:port/db'  # PowerShell\n"
             "  export DATABASE_URL=postgresql://user:pass@host:port/db    # bash"
         )
+    prod_guard.check(database_url)  # refuses a fly tunnel to production
     conn = psycopg2.connect(database_url)
     conn.set_session(readonly=True, autocommit=True)
     try:
