@@ -53,11 +53,11 @@ session end.
 **Move 1 key figures (new definition):**
 | Retailer | Gross | Trade Cost | Net | Eff Rate |
 |----------|-------|-----------|-----|----------|
-| Walmart | $7,480,454 | $958,702 | $6,521,752 | 12.8% |
-| Costco | $7,021,732 | $738,596 | $6,283,136 | 10.5% |
-| Kroger | $6,660,048 | $723,912 | $5,936,136 | 10.9% |
-| Whole Foods | $5,644,049 | $504,758 | $5,139,291 | 8.9% |
-| Sprouts | $3,900,857 | $396,528 | $3,504,329 | 10.2% |
+| National mass retailer | $7,480,454 | $958,702 | $6,521,752 | 12.8% |
+| Club retailer | $7,021,732 | $738,596 | $6,283,136 | 10.5% |
+| Conventional grocer | $6,660,048 | $723,912 | $5,936,136 | 10.9% |
+| Natural grocer | $5,644,049 | $504,758 | $5,139,291 | 8.9% |
+| Regional natural grocer | $3,900,857 | $396,528 | $3,504,329 | 10.2% |
 | Regional | $1,765,601 | $154,433 | $1,611,168 | 8.7% |
 
 **Next:** No active tasks. Leakage/promo numbers unchanged ($248,314 / 2,569 / 123 promos). README figures still accurate. Next `/improve` due 2026-07-01.

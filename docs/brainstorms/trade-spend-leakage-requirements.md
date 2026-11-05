@@ -116,7 +116,7 @@ Brands in the $5M–$30M range can't justify $30K–$150K/year for trade promoti
 
 ## Acceptance Examples
 
-- AE1. **Covers R11, R12.** Given the pipeline has run and Walmart is the highest gross-revenue retailer but fourth-highest net-revenue retailer, the bump chart shows Walmart's line crossing downward from position 1 (left) to position 4 (right). Clicking the line pins a dark card showing Walmart's gross revenue, $1.9M trade spend, net revenue, and 76% net-to-gross ratio.
+- AE1. **Covers R11, R12.** Given the pipeline has run and the national mass retailer is the highest gross-revenue retailer but fourth-highest net-revenue retailer, the bump chart shows the national mass retailer's line crossing downward from position 1 (left) to position 4 (right). Clicking the line pins a dark card showing the national mass retailer's gross revenue, $1.9M trade spend, net revenue, and 76% net-to-gross ratio.
 
 - AE2. **Covers R14, R15.** Given the pipeline has identified 8 double-funded promotion instances totaling $340K, the leakage ledger shows "Double-funded promotions — $340K — 8 instances — Recoverable." Clicking that row expands an AG Grid table with 8 rows, each showing the promotion name, period, off-invoice amount, bill-back amount, and $340K apportioned across instances.
 

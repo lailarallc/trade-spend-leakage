@@ -109,9 +109,9 @@ The split matters: the double-funding, phantom, and rate-creep buckets are *reco
 
 #### Before / After
 
-- **Before:** CEO treats Walmart as the #1 account because it buys the most. Trade spend is "~$3.6M/yr" — one number, no breakdown. Promotional decisions are made on relationship and habit. Nobody reconciles agreements against deductions.
+- **Before:** CEO treats the national mass retailer as the #1 account because it buys the most. Trade spend is "~$3.6M/yr" — one number, no breakdown. Promotional decisions are made on relationship and habit. Nobody reconciles agreements against deductions.
 
-- **After:** CEO sees Walmart ranks #4 by net revenue after its trade load. Sees ~$1.14M in identified leakage — $615K recoverable/preventable, $520K reallocatable. Reallocates trade spend from the sinkhole retailers to the efficient ones. Disputes the double-funded and phantom deductions with evidence. Next year's trade spend negotiation starts from a reconciled base, not an inflated one.
+- **After:** CEO sees the national mass retailer rank #4 by net revenue after its trade load. Sees ~$1.14M in identified leakage — $615K recoverable/preventable, $520K reallocatable. Reallocates trade spend from the sinkhole retailers to the efficient ones. Disputes the double-funded and phantom deductions with evidence. Next year's trade spend negotiation starts from a reconciled base, not an inflated one.
 
 #### Who Else Sees This?
 
@@ -184,9 +184,9 @@ The analysis joins three data sources the brand already has but has never connec
 > from Postgres. The leak taxonomy is what carries; the dollars below are not
 > current Cinderhaven figures.
 
-Cinderhaven runs ~$3.6M/yr in all-in trade (11.0% of scan revenue, trailing 52 weeks) across Walmart, Costco, UNFI/Whole Foods, KeHE, and DTC. On a promo-active book of that size, the analysis pattern finds:
+Cinderhaven runs ~$3.6M/yr in all-in trade (11.0% of scan revenue, trailing 52 weeks) across the national mass retailer, club retailer, distributor A/natural grocer, distributor B, and DTC. On a promo-active book of that size, the analysis pattern finds:
 
-- **The ranking inverts:** Walmart is #1 by gross revenue ($8M) but #4 by net revenue after $1.9M in trade spend. Costco, which buys less gross, keeps far more net.
+- **The ranking inverts:** The national mass retailer is #1 by gross revenue ($8M) but #4 by net revenue after $1.9M in trade spend. The club retailer, which buys less gross, keeps far more net.
 - **$340K in double-funded promotions** — funded off-invoice and also deducted as bill-backs.
 - **$180K in phantom promotions** — deducted with no matching agreement and no POS lift.
 - **$95K in rate discrepancies** — deductions exceeding agreed promotional rates.
