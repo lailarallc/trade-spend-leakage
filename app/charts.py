@@ -389,8 +389,10 @@ def efficiency_chart(df: pd.DataFrame) -> go.Figure:
         column_widths=[0.5, 0.5],
         horizontal_spacing=0.06,
         subplot_titles=[
-            "Total Trade Spend as % of Revenue",
-            "Revenue per Promo Dollar Invested",
+            # Two lines each: the longer retailer labels narrow both panels, and a
+            # one-line title overlaps its neighbour at phone width.
+            "Total Trade Spend<br>as % of Revenue",
+            "Revenue per Promo<br>Dollar Invested",
         ],
     )
 
@@ -434,7 +436,7 @@ def efficiency_chart(df: pd.DataFrame) -> go.Figure:
         paper_bgcolor=CANVAS,
         plot_bgcolor=CANVAS,
         height=total_height,
-        margin=dict(l=20, r=80, t=50, b=40),
+        margin=dict(l=20, r=80, t=70, b=40),
         font=dict(family=FONT_SANS, size=12, color=INK),
         hoverlabel=dict(bgcolor=CANVAS, font_family=FONT_SANS),
     )
