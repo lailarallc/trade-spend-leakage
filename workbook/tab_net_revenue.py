@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table
 from openpyxl.worksheet.worksheet import Worksheet
 
+from app.labels import display_label
 from workbook.styles import (
     ALIGN_CENTER,
     ALIGN_LEFT,
@@ -91,7 +92,7 @@ def build_net_revenue(ws: Worksheet, db_path: Path, built_date=None) -> None:
 
     for i, (retailer, gross, trade, net, ratio) in enumerate(rows):
         r = header_row + 1 + i
-        ws.cell(row=r, column=2, value=retailer).font = FONT_BODY
+        ws.cell(row=r, column=2, value=display_label(retailer)).font = FONT_BODY
 
         c_gross = ws.cell(row=r, column=3, value=gross)
         c_gross.number_format = NUM_FMT_DOLLAR

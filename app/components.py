@@ -17,6 +17,7 @@ from app.constants import (
     GRIDLINE,
     TEXT_SECONDARY,
 )
+from app.labels import display_label
 
 
 def _card_stat(label: str, value: str) -> html.Div:
@@ -46,7 +47,7 @@ def callout_card(row: pd.Series) -> html.Div:
     ratio = f"{float(row['net_to_gross_ratio']):.1%}"
 
     return html.Div([
-        html.Div(str(row["retailer"]), style={
+        html.Div(display_label(row["retailer"]), style={
             "color": CARD_TEXT,
             "fontFamily": FONT_SERIF,
             "fontSize": "18px",
@@ -87,7 +88,7 @@ def promo_callout_card(row: pd.Series) -> html.Div:
         roi_str = "N/A"
 
     heading = f"{row['promo_id']}"
-    sub = f"{row.get('sku_id', '')}  ·  {row.get('retailer', '')}  ·  {row.get('promo_type', '')}"
+    sub = f"{row.get('sku_id', '')}  ·  {display_label(row.get('retailer', ''))}  ·  {row.get('promo_type', '')}"
 
     return html.Div([
         html.Div(heading, style={

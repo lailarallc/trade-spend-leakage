@@ -174,6 +174,11 @@ Each entry:
 
 ---
 
+### 2026-11-05: Render trade partners by public label, never by real name, beside a dollar figure
+- **Why:** Owner rule of 2026-11-05 (lailara-website DECISIONS): a Cinderhaven dollar figure never shares a sentence, row, chart label, card, tooltip, or download row with a real trade-partner name. `app/labels.py` `display_label()` reads the vendored `reference/retailer_display_labels.json` and is applied where names render: Move 1 lead sentence, slopegraph end labels and hovers, retailer callout card, efficiency chart axis, promo ROI hover and callout card, leakage instance grid, and the four workbook tabs that list retailers. The lead sentence gives each label "the" ("The national mass retailer, the club retailer, and ...") so it reads as prose.
+- **Scope:** Display layer of the dashboard and the downloadable workbook. Data keys stay real: `results.db` columns, `retailer_id`, and the slopegraph pin key (`customdata`, compared against `results_net_revenue.retailer`) are unchanged, so the real name still travels in the figure JSON but is never rendered. The leakage grid drops `retailer_id` from its row data so sort and filter run on the label. Client mode is untouched (it renders the client's own partners).
+- **Do not:** Render `retailer` or `retailer_id` directly in any new chart, card, tooltip, grid, or workbook cell; pass it through `display_label()`. Do not hardcode label strings; refresh the JSON with `scripts/refresh_canonical.py`. Gate: `scripts/check_retailer_labels.py` on the rendered page text.
+
 ## Reversed / Superseded
 
 When a decision is overturned:

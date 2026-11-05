@@ -225,7 +225,9 @@ def test_partial_build_state_produces_valid_workbook_with_placeholders(partial_r
     # Net Revenue Ranking has real data
     ws_nr = wb["Net Revenue Ranking"]
     text_values = [c.value for row in ws_nr.iter_rows() for c in row if c.value]
-    assert "Walmart" in text_values
+    # Rendered as the public label, never the real name (2026-11-05 rule).
+    assert "National mass retailer" in text_values
+    assert "Walmart" not in text_values
 
     # Trade Spend Efficiency and other missing sheets contain the placeholder text
     for sheet_name in ["Trade Spend Efficiency", "Promotional ROI", "Accrual Reconciliation"]:

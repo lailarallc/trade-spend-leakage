@@ -9,6 +9,7 @@ from plotly.subplots import make_subplots
 
 from lailara_palette import LL_CHICAGO_SURFACE
 
+from app.labels import display_label
 from app.constants import (
     CANVAS,
     CATEGORICAL,
@@ -47,6 +48,7 @@ def bump_chart(df: pd.DataFrame, pinned: str | None = None) -> go.Figure:
 
     for i, (_, row) in enumerate(df.iterrows()):
         retailer = str(row["retailer"])
+        label = display_label(retailer)
         gross = float(row["gross_revenue"])
         net = float(row["net_revenue"])
         color = CATEGORICAL[i % len(CATEGORICAL)]
@@ -58,13 +60,13 @@ def bump_chart(df: pd.DataFrame, pinned: str | None = None) -> go.Figure:
             x=[0, 1],
             y=[gross, net],
             mode="lines+markers",
-            name=retailer,
+            name=label,
             line=dict(color=color, width=line_width),
             marker=dict(color=color, size=8),
             opacity=opacity,
             customdata=[retailer, retailer],
             hovertemplate=(
-                f"<b>{retailer}</b><br>"
+                f"<b>{label}</b><br>"
                 "$%{y:,.0f}<br>"
                 "<extra></extra>"
             ),
@@ -90,7 +92,7 @@ def bump_chart(df: pd.DataFrame, pinned: str | None = None) -> go.Figure:
         fig.add_annotation(
             x=1,
             y=label_positions[i],
-            text=f"  {retailer}  ${net / 1e6:.1f}M",
+            text=f"  {display_label(retailer)}  ${net / 1e6:.1f}M",
             showarrow=False,
             xanchor="left",
             yanchor="middle",
@@ -261,9 +263,15 @@ def leakage_ledger(df: pd.DataFrame, pinned: str | None = None) -> html.Div:
 def leakage_instances_grid(df: pd.DataFrame) -> "dash_ag_grid.AgGrid":
     import dash_ag_grid as dag
 
+    # Show the public label, not the partner ID; drop the ID so the grid's
+    # sort and filter run on the label and the real name never ships.
+    rows = df.copy()
+    rows["retailer_label"] = rows["retailer_id"].map(display_label)
+    rows = rows.drop(columns=["retailer_id"])
+
     col_defs = [
         {"field": "deduction_id",  "headerName": "Deduction ID",   "width": 140},
-        {"field": "retailer_id",   "headerName": "Retailer",        "width": 160},
+        {"field": "retailer_label", "headerName": "Retailer",       "width": 180},
         {"field": "promo_id",      "headerName": "Promo / Type",    "width": 150,
          "valueFormatter": {"function": "params.value ?? '—'"}},
         {"field": "period",        "headerName": "Date",            "width": 120},
@@ -282,7 +290,7 @@ def leakage_instances_grid(df: pd.DataFrame) -> "dash_ag_grid.AgGrid":
 
     return dag.AgGrid(
         id="leakage-instances-grid",
-        rowData=df.to_dict("records"),
+        rowData=rows.to_dict("records"),
         columnDefs=col_defs,
         defaultColDef={
             "resizable": True,
@@ -318,7 +326,7 @@ def efficiency_chart(df: pd.DataFrame) -> go.Figure:
     Retailers sorted by ascending trade_spend_pct (most efficient at top).
     """
     df = df.copy().sort_values("trade_spend_pct", ascending=True)
-    retailers = df["retailer"].tolist()
+    retailers = [display_label(r) for r in df["retailer"]]
     n = len(retailers)
 
     # --- Left panel colors: HK teal gradient (darkest = largest value)
@@ -503,7 +511,7 @@ def promo_roi_chart(df: pd.DataFrame, pinned: str | None = None) -> go.Figure:
         incr = row.get("incremental_revenue")
         is_losing = row.get("is_money_losing")
         promo_type = str(row.get("promo_type") or "")
-        retailer = str(row.get("retailer") or "")
+        retailer = display_label(row.get("retailer") or "")
         sku = str(row.get("sku_id") or "")
 
         if not has_baseline or cost is None or pd.isna(cost):

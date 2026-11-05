@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table
 from openpyxl.worksheet.worksheet import Worksheet
 
+from app.labels import display_label
 from workbook.styles import (
     ALIGN_CENTER,
     ALIGN_LEFT,
@@ -152,7 +153,7 @@ def build_leakage(ws: Worksheet, db_path: Path, built_date=None) -> None:
         ltype, ded_id, retailer_id, promo_id, period, agreed, actual, variance, classification = inst_row_data
         ws.cell(row=row, column=2, value=ltype).font = FONT_BODY
         ws.cell(row=row, column=3, value=ded_id).font = FONT_BODY
-        ws.cell(row=row, column=4, value=retailer_id).font = FONT_BODY
+        ws.cell(row=row, column=4, value=display_label(retailer_id)).font = FONT_BODY
         ws.cell(row=row, column=5, value=promo_id).font = FONT_BODY
         ws.cell(row=row, column=6, value=period).font = FONT_BODY
 

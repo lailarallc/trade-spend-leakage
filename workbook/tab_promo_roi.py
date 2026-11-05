@@ -12,6 +12,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table
 from openpyxl.worksheet.worksheet import Worksheet
 
+from app.labels import display_label
 from workbook.styles import (
     ALIGN_CENTER,
     ALIGN_LEFT,
@@ -115,7 +116,7 @@ def build_promo_roi(ws: Worksheet, db_path: Path, built_date=None) -> None:
         r = header_row + 1 + i
         ws.cell(row=r, column=2, value=promo_id).font = FONT_BODY
         ws.cell(row=r, column=3, value=sku_id).font = FONT_BODY
-        ws.cell(row=r, column=4, value=retailer).font = FONT_BODY
+        ws.cell(row=r, column=4, value=display_label(retailer)).font = FONT_BODY
         ws.cell(row=r, column=5, value=start_week).font = FONT_BODY
         ws.cell(row=r, column=6, value=end_week).font = FONT_BODY
 

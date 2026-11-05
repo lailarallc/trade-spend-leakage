@@ -7,6 +7,7 @@ from dash import dcc, html
 
 from app.charts import accrual_chart, bump_chart, efficiency_chart, leakage_ledger, promo_roi_chart
 from app.components import footnote
+from app.labels import display_label
 from app.constants import (
     APP_SUBTITLE,
     APP_TITLE,
@@ -152,7 +153,10 @@ def _compression_lead(df: pd.DataFrame) -> str:
         return generic
 
     compression = (gross_spread - net_spread) / gross_spread
-    names = [str(n) for n in top3["retailer"].tolist()]
+    # Public labels, not real names, beside the dollar figures. Each label takes
+    # "the"; only the sentence-opening one is capitalized.
+    names = [f"the {display_label(n, capitalize=False)}" for n in top3["retailer"]]
+    names[0] = names[0][0].upper() + names[0][1:]
     names_str = f"{', '.join(names[:-1])}, and {names[-1]}"
 
     return (
