@@ -1,0 +1,17 @@
+# Typed figures this repo prints with no canon key (owner, 2026-11-15; plan U19, U22).
+# One row per figure per location. The platform's fleet check holds the row count to a ceiling that only
+# falls: give a figure a key (or stop printing it) and delete its row. listed=yes: the read map names it, and
+# U19 owes its key; listed=no: U22 works it down. Generated from the 2026-11-15 manifest pass.
+file_line	printed	exact_value	meaning	source	kind	listed
+README.md:91	50 SKUs	50	SKU universe	reference/canonical_values.json universe.skus_total.all_time	prose-only	no
+README.md:92	6 contracted retailers	6	retailer count	reference/canonical_values.json universe.retailers.all_time	prose-only	no
+README.md:94	1 DTC channel	1	DTC channel count	prose only	prose-only	no
+README.md:98	all 50 SKUs	50	SKUs in baked extract	reference/canonical_values.json universe.skus_total.all_time	prose-only	no
+tests/test_canonical_regression.py:184	9	9	retailers table row count (6 retailers + 3 distributors) (asserted)	SQL tests/test_canonical_regression.py:183 SELECT COUNT(*) FROM retailers	warehouse-query	no
+tests/test_demo_golden.py:45	28861184.99	28861184.99	net revenue after trade, CY2025 (asserted)	data/results.db SUM(results_net_revenue.net_revenue) (pipeline/move1_net_revenue.py)	repo-export	yes
+tests/test_demo_golden.py:53	unauthorized: 148467.30	148467.3	unauthorized deduction leakage dollars	data/results.db results_leakage_summary[leakage_type=unauthorized].dollar_total (pipeline/move3_leakage.py)	repo-export	no
+tests/test_demo_golden.py:54	ghost_promo: 78402.39	78402.39	ghost promo leakage dollars	data/results.db results_leakage_summary[ghost_promo].dollar_total	repo-export	no
+tests/test_demo_golden.py:55	double_funded: 21184.33	21184.33	double-funded promo leakage dollars	data/results.db results_leakage_summary[double_funded].dollar_total	repo-export	no
+tests/test_demo_golden.py:56	rate_discrepancy: 260.17	260.17	rate discrepancy leakage dollars	data/results.db results_leakage_summary[rate_discrepancy].dollar_total	repo-export	no
+tests/test_demo_golden.py:61	248314.19	248314.19	total leakage dollars	data/results.db SUM(results_leakage_summary.dollar_total)	repo-export	yes
+tests/test_demo_golden.py:62	2569	2569	leakage instances	data/results.db SUM(results_leakage_summary.instance_count)	repo-export	yes
